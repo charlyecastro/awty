@@ -8,19 +8,23 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.graphics.PorterDuff
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
-import android.support.annotation.RequiresApi
+import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.checkSelfPermission
 import android.telephony.PhoneNumberUtils
+import android.telephony.SmsManager
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import edu.uw.ischool.awty.MainActivity.Companion.PHONE
 import edu.uw.ischool.awty.MainActivity.Companion.TEXT
+import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
@@ -59,6 +63,8 @@ class MainActivity : AppCompatActivity() {
             if (isTextEmpty(phone) || isTextEmpty(text) || isTextEmpty(times)) {
                 error = "Can't have empty fields"
                 return false
+                // uncomment both 'else if' if you want to
+                // text with an Emulator Port Number
             } else if (phone.text.length < 7 || phone.text.length > 10) {
                 error = "Phone number is invalid"
                 return false
@@ -109,6 +115,8 @@ class AlarmReceiver : BroadcastReceiver() {
        val phone = p1!!.getStringExtra(PHONE)
         val message = p1!!.getStringExtra(TEXT)
         Log.i("Message",phone + ": " + message )
-        Toast.makeText(p0, phone + ": " + message, Toast.LENGTH_LONG).show()
+            var sms = SmsManager.getDefault()
+            sms.sendTextMessage(phone, null, message, null, null)
+      //  }
     }
 }
