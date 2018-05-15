@@ -1,21 +1,14 @@
 package edu.uw.ischool.awty
-//
-import android.annotation.SuppressLint
-import android.app.Activity
+
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
-import android.graphics.PorterDuff
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.checkSelfPermission
 import android.telephony.PhoneNumberUtils
 import android.telephony.SmsManager
 import android.util.Log
@@ -24,7 +17,6 @@ import android.widget.EditText
 import android.widget.Toast
 import edu.uw.ischool.awty.MainActivity.Companion.PHONE
 import edu.uw.ischool.awty.MainActivity.Companion.TEXT
-import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
